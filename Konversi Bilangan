@@ -1,0 +1,77 @@
+import java.util.Scanner;
+import java.util.*;
+import java.lang.*;
+import java.text.*;
+
+public class App {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        String hexa ;
+        int masuk, i, desimal, biner, nilai;
+        
+        DecimalFormat df = new DecimalFormat("00000000");
+
+        do{
+            System.out.println("Konversi Bilangan");
+            System.out.println("1. Biner ke Desimal");
+            System.out.println("2. Desimal ke Biner");
+            System.out.println("3. Biner ke Hexa");
+            System.out.println("4. Hexa ke Biner");
+            System.out.println("5. Desimal ke Hexa");
+            System.out.println("6. Hexa ke Desimal");
+            System.out.println("0. Exit");
+            System.out.print("Pilih operasi konversi bilangan: "); masuk = input.nextInt();
+
+            switch (masuk) {
+                case 1 :
+                    System.out.print("Masukkan Biner: "); biner = input.nextInt();
+                    input.nextLine();
+                    desimal = 0;
+                    i = 1;
+                    while (biner > 0){
+                        nilai = biner % 10;
+                        desimal += nilai * i;
+                        i *= 2;
+                        biner /= 10;
+                    }
+                    System.out.println("Hasil konversi Biner ke Desimal: " + desimal);
+                    break;
+                case 2 :
+                    System.out.print("Masukkan Desimal: "); desimal = input.nextInt();
+                    String biner1 = Integer.toBinaryString(desimal);
+                    System.out.println("Hasil konversi Desimal ke Biner: " + biner1);
+                    break;
+                case 3 :
+                    System.out.print("Masukkan Biner: "); biner1 = input.next();
+                    desimal = Integer.parseInt(biner1);
+                    hexa = Integer.toHexString(desimal).toUpperCase();
+                    System.out.println("Hasil konversi Biner ke Hexa: " + hexa);
+                    break;
+                case 4 :
+                    System.out.print("Masukkan Hexa: "); hexa = input.next();
+                    try{
+                        desimal = Integer.parseInt(hexa, 16);
+                        biner1 = Integer.toBinaryString(desimal);
+                        System.out.println("Hasil konversi Hexa ke Biner: " + biner1);
+                    }catch (NumberFormatException e){
+                        System.out.println("Input tidak valid.");
+                    }
+                    break;
+                case 5 :
+                    System.out.print("Masukkan Desimal: "); desimal = input.nextInt();
+                    hexa = Integer.toHexString(desimal);
+                    System.out.println("Hasil konversi Desimal ke Hexa: " + hexa.toUpperCase());
+                    break;
+                case 6 :
+                    System.out.print("Masukkan Hexa: "); hexa = input.next();
+                    desimal = Integer.parseInt(hexa, 16);
+                    System.out.println("Hasil konversi Hexa ke Desimal: " + desimal);
+                break;
+                
+                default:
+                    
+                    break;
+            }
+        }while(masuk != 0); 
+    }
+}
